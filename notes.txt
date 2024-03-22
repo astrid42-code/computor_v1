@@ -19,6 +19,7 @@ The polynomial degree is strictly greater than 2, I can't solve.
 2 main : 
 > pas de gestion d'erreur sur les arguments envoyes
 > envoie sur fct parsing qui retourne une nouvelle string sous la forme reduite 
++ prévoir au départ une fct "specialcase" pour les cas ou x = x (cf sujet)
 > envoie sur fct compteur qui retourne le degre polynomial de l'équation (peut-etre renvoye aussi par fct parsing?)
 > envoie sur fct calcul qui retourne : 
     - un commentaire sur l'equation (cf exemples du rendu attendu)
