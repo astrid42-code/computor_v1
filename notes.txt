@@ -25,3 +25,11 @@ The polynomial degree is strictly greater than 2, I can't solve.
     - un commentaire sur l'equation (cf exemples du rendu attendu)
     - le.s résultat.s s'il y en a
     - si pas de resultat, ne rien afficher
+
+Think of complex solution when the degree equals 2. 
+You’re free to pick your favorite language.
+That being said, you obviously cannot use a math lib function (except for subtrac-
+tion, division, addition and multiplication of real numbers) that you would not have
+implemented yourself.
+If you work in a compilable language (C/C++ in particular), you will present a
+Makefile that includes the usual set of rules.
