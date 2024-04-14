@@ -34,12 +34,12 @@ def parser(left: str, right: str):
 
     print(res, d2)
 
-    mais comment ca se passe quand plsrs elements en right (a faire avec left )
+    # mais comment ca se passe quand plsrs elements en right (a faire avec left )
 
-    + verifier que chaque membre existe bien (ex la cle ou la value ne sont pas nulles) sinon msg erreur et exit 
-    > check qu il y a bien X^, et les valeurs
-    > a faire dans une boucle ou - et + sont a conserver (enfin surtout le - s il y a !!) 
-    et servent de separateurs pour remplir le dico et verifier que tous les elements sont bien la dans chaque morceau
+    # + verifier que chaque membre existe bien (ex la cle ou la value ne sont pas nulles) sinon msg erreur et exit 
+    # > check qu il y a bien X^, et les valeurs
+    # > a faire dans une boucle ou - et + sont a conserver (enfin surtout le - s il y a !!) 
+    # et servent de separateurs pour remplir le dico et verifier que tous les elements sont bien la dans chaque morceau
 
 
     # 2 special_cases : voir exemple du sujet (meme chose des 2 cotes) et trouver les differentes exceptions possibles
