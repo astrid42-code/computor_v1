@@ -22,10 +22,20 @@ def parse(av: str):
     # > retirer tout ce qui est a partir du '*'
     # > si c est + en premier, le retirer; si c est - le garder
     # les garder dans une liste
-
+    for i in range(len(res)):
+        # Séparation de la chaîne en fonction de '*'
+        c = res[i].split('*')
+        if (len(c) > 1):
+            if c[0][0] == '+':
+                c = c[0][1::]
+                res[i] = float(c)
+            # Remplacement de l'élément par la partie avant '*'
+            else:
+                res[i] = float(c[0])
 
     # substract 1st term and last term :
-    # c[0] -= c[len(c)-1] # ou c.pop() pour recuperer le dernier element de la liste
+    # res[0] -= res[len(res)-1] # possible, mais necessite ensuite de remove le dernier element de la liste
+    res[0] -= res.pop() #  pour recuperer le dernier element de la liste et le retirer directement
 
     
     # retransformer av avec 1er terme = c[0] 
