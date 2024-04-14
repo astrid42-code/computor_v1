@@ -38,12 +38,14 @@ def parse(av: str):
     res[0] -= res.pop() #  pour recuperer le dernier element de la liste et le retirer directement
 
     
-    # retransformer av avec 1er terme = c[0] 
+    # retransformer av avec 1er terme = c[0] mais pb des float/int > trouver la fct qui trouve si c int (x.0) ou float (x.8)
     # puis recopier tout ce qui est a partir du '*' jusqu au '='
     # + ecrire '0' final
     # + verifier presence des spaces
 
     print(res)
+    # print(av[0], int(res[0]))
+
 
 def main():
     av = sys.argv
