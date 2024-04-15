@@ -45,7 +45,11 @@ def parse(av: str):
 
     print(res)
     # print(av[0], int(res[0]))
+    return(res)
 
+
+def result(res):
+    print("yeah")
 
 def main():
     av = sys.argv
@@ -60,8 +64,9 @@ def main():
     # avant parsing : 
     # - découper la str pour avoir les differents éléments de l expression dans l ordre
 
-    parse(av[1])
+    res=parse(av[1])
 
+    result(res)
 
 
 if __name__ == "__main__":
