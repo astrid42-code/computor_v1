@@ -45,18 +45,21 @@ def parse(av: str):
             res[c] = int(i)
         c += 1
     
+    i, j = 0, 0
+    while (av[i] != '*'):
+        i += 1
+    while (av[j] != '='):
+        j+=1   
+    red = av[i-1:j]
     # puis recopier tout ce qui est a partir du '*' jusqu au '='
-    # + ecrire '0' final
-    # + verifier presence des spaces
+    print(f'Reduced form: {res[0]}{red} = 0')
 
-
-    print(res)
-    # print(av[0], int(res[0]))
     return(res)
 
 
 def result(res):
     print("yeah")
+    # faire 4 cas en fct du degre : 0, 1, 2, tout le reste
 
 def main():
     av = sys.argv
@@ -73,6 +76,7 @@ def main():
 
     res=parse(av[1])
 
+    print('Polynomial degree:', len(res)-1)
     result(res)
 
 
