@@ -33,3 +33,10 @@ tion, division, addition and multiplication of real numbers) that you would not 
 implemented yourself.
 If you work in a compilable language (C/C++ in particular), you will present a
 Makefile that includes the usual set of rules.
+
+
+point important a tester : 
+you should also think
+of zero, negative or non whole coefficients...
+There might be exceptions you will have to manage. In the equation 42∗X0 = 42∗X0,
+for instance, each real number is a solution...

@@ -1,4 +1,4 @@
-import sys, re
+import sys, re, math
 
 def check_arg(ac: int, av: str):
     
@@ -37,6 +37,7 @@ def parse(av: str):
     # res[0] -= res[len(res)-1] # possible, mais necessite ensuite de remove le dernier element de la liste
     res[0] -= res.pop() #  pour recuperer le dernier element de la liste et le retirer directement
 
+    # Souci a regler : si 1er term ou dernier sont negatifs
     
     # retransformer av avec 1er terme = c[0] mais pb des float/int > trouver la fct qui trouve si c int (x.0) ou float (x.8)
     c = 0
@@ -45,21 +46,40 @@ def parse(av: str):
             res[c] = int(i)
         c += 1
     
-    i, j = 0, 0
-    while (av[i] != '*'):
-        i += 1
-    while (av[j] != '='):
-        j+=1   
-    red = av[i-1:j]
+    red = av[av.find('*'):av.find('=')]
     # puis recopier tout ce qui est a partir du '*' jusqu au '='
-    print(f'Reduced form: {res[0]}{red} = 0')
+    print(f'Reduced form: {res[0]:g} {red} = 0') #format :g pour un chiffre apres virgule 
+    # cf https://cheatography.com/brianallan/cheat-sheets/python-f-strings-number-formatting/
 
     return(res)
 
 
 def result(res):
-    print("yeah")
     # faire 4 cas en fct du degre : 0, 1, 2, tout le reste
+    if len(res) == 1:
+        print('1')
+    elif len(res) == 2:
+        print('2')
+    elif len(res) == 3:
+        # https://www.maths-et-tiques.fr/telech/20Poly.pdf
+        a = res[2]
+        b = res[1]
+        c = res[0]
+        discriminant = (b ** 2) - (4 * a * c)
+        # print(discriminant)
+        if discriminant > 0:
+            z1 = (-b - math.sqrt(discriminant)) / (2 * a) # z1 = -b-√discriminant / 2a
+            z2 = (-b + math.sqrt(discriminant)) / (2 * a) # z2 = -b+√discriminant / 2a
+            print('Discriminant is strictly positive, the two solutions are:\n', z1, '\n', z2)
+        elif discriminant == 0:
+            z0 = -(b / (2 * a))
+            print('The solution is:\n', z0)
+        elif discriminant < 0:
+            print('No real solution, discriminant is strictly negative :', discriminant)
+
+    elif len(res) > 3:
+        print('The polynomial degree is strictly greater than 2, I can\'t solve.')
+
 
 def main():
     av = sys.argv
