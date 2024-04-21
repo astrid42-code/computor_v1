@@ -34,9 +34,8 @@ implemented yourself.
 If you work in a compilable language (C/C++ in particular), you will present a
 Makefile that includes the usual set of rules.
 
+A regler : 
+- nombres negatifs (1er et dernier terme de l equation)
 
-point important a tester : 
-you should also think
-of zero, negative or non whole coefficients...
-There might be exceptions you will have to manage. In the equation 42∗X0 = 42∗X0,
-for instance, each real number is a solution...
+A modifier si possible pour plus de proprete/concision:
+faire une comprehension list pour res / coeff 
