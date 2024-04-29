@@ -27,35 +27,46 @@ def parse(av: str):
     # print('res', res)
     # coeff = []
     s = len(res)
-    for i in range(s):
+
+    # print("res = ", res, s)
+    # if s == 2:
+    #     if 
+
+    i = 0
+
+    # for i in range(s):
+    while (i < s):
         # print('1', res)
 
         # Séparation de la chaîne en fonction de '*'
         tmp = res[i].split('*')
-        # print(res[i])
-        # if len(tmp) == 1:
-        #     res.remove(res[i])
-        #     s -= 1
-        #     i -= 1
+
+        if len(tmp) <= 1:
+            res.remove(res[i])
+            s -= 1
+            i -= 1
 
         if (len(tmp) > 1):
             if tmp[0][0] == '+':
                 tmp = tmp[0][1::]
                 res[i] = float(tmp)
-                # coeff.append(float(tmp))
+            elif tmp[0][0] == '-':
+                tmp = tmp[0][1::]
+                res[i] = float(tmp) * (-1)
             # Remplacement de l'élément par la partie avant '*'
             else:
                 res[i] = float(tmp[0])
                 # coeff.append(float(tmp[0]))
-    #     print('2', res)
+        # print('2', res)
+        i += 1
     # print('3', res)
-    # print(coeff, res)
+
 
     # substract 1st term and last term :
     # res[0] -= res[len(res)-1] # possible, mais necessite ensuite de remove le dernier element de la liste
     # print(len(res), res.pop())
-    # if len(res) > 2:
-    res[0] -= res.pop()  # pour recuperer le dernier element de la liste et le retirer directement
+    if len(res) >= 2:
+        res[0] -= res.pop()  # pour recuperer le dernier element de la liste et le retirer directement
 
     # Souci a regler : si 1er term ou dernier sont negatifs
     # + quand 1 seul terme de chaque cote (il ne veut pas soustraire element 0 et 1)
@@ -87,7 +98,7 @@ def result(res):
             print('There is no solution')
     elif len(res) == 2:  # 1st degree : http://serge.mehl.free.fr/anx/equ1.html
         z = -a / b
-        print('The solution is :\n', z)
+        print('The solution is :\n', z, sep='')
     elif len(res) == 3:  # 2nd degree
         # b = res[1]
         c = res[2]
@@ -97,7 +108,7 @@ def result(res):
         if discriminant > 0:
             z1 = (-b - math.sqrt(discriminant)) / (2 * c) # z1 = -b-√discriminant / 2a
             z2 = (-b + math.sqrt(discriminant)) / (2 * c) # z2 = -b+√discriminant / 2a
-            print('Discriminant is strictly positive, the two solutions are:\n', z1, '\n', z2)
+            print('Discriminant is strictly positive, the two solutions are:\n{0:.5f}'.format(z1), '\n{0:.5f}'.format(z2), sep='')
         elif discriminant == 0:
             z0 = -(b / (2 * c))
             print('The solution is:\n', z0)
