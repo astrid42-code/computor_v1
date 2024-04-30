@@ -27,14 +27,7 @@ def parse(av: str):
     # print('res', res)
     # coeff = []
     s = len(res)
-
-    # print("res = ", res, s)
-    # if s == 2:
-    #     if 
-
     i = 0
-
-    # for i in range(s):
     while (i < s):
         # print('1', res)
 
