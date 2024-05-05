@@ -15,7 +15,7 @@ def check_arg(ac: int, av: str):
 def parse1(res, av):
     s = len(res)
     i = 0
-    print(type(res))
+    # print(type(res))
     while (i < s):
         print('1', res)
 
@@ -28,6 +28,7 @@ def parse1(res, av):
             i -= 1
 
         if (len(tmp) > 1):
+            print(tmp[0][0])
             if tmp[0][0] == '+':
                 tmp = tmp[0][1::]
                 res[i] = float(tmp)
@@ -66,37 +67,40 @@ def parse1(res, av):
 
     return (res)
 
+
 def parse(av: str):
     # list of the equation terms
     res = re.sub(" ", "", av)
     cpy = res
-    res = res.split('=', maxsplit=1)
+    res = res.split('=')
+    print(res, res[0], res[1], type(res))
     r1 = res[0]
     r2 = res[1]
+    print(r1, r2)
     d = {43: '$+', 45: '$-'}
-    r1 = r1.translate(d).split('$')
-    r2 = r2.translate(d).split('$')
-
+    r1 = res[0].translate(d).split('$')
+    r2 = res[1].translate(d).split('$')
+    print(r1, r2)
     d1 = {43: '$+', 45: '$-', 61: '$'}
     r = cpy.translate(d1).split('$')
-    # print(r)
+    print(r)
 
     if len(r2) == 1:
         pouet = parse1(r, av)
         # print(r)
-        return(pouet)
+        return (pouet)
     else:
         print("prout")
-        1 - parser r1 et r2 en notant pour chacun :
-        le coeff et le degre associe (en list? en dico? )
-        2 faire passer les membres de r2 dans r1 en verifier le degre
-        puis si degre exisant lui soustraire le membre de r2
-        ou si degre pas existant le rajouter / soustraire dans la liste 
-        (au bon endroit car degres doivent etre dans l ordre!)
-        3 recuperer tous les membres de l equation modifies dans r1
-        et reconstituer la string pour affichage reduced form 
-        4 trouver le degre le plus haut de r1 = degre de l equation 
-        (sauf si un membre manquant? dans ce cas prendre la len de r1 ou len(r1)-1?)
+        # 1 - parser r1 et r2 en notant pour chacun :
+        # le coeff et le degre associe (en list? en dico? )
+        # 2 faire passer les membres de r2 dans r1 en verifier le degre
+        # puis si degre exisant lui soustraire le membre de r2
+        # ou si degre pas existant le rajouter / soustraire dans la liste 
+        # (au bon endroit car degres doivent etre dans l ordre!)
+        # 3 recuperer tous les membres de l equation modifies dans r1
+        # et reconstituer la string pour affichage reduced form 
+        # 4 trouver le degre le plus haut de r1 = degre de l equation 
+        # (sauf si un membre manquant? dans ce cas prendre la len de r1 ou len(r1)-1?)
 
 
 def result(res):
