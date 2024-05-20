@@ -39,3 +39,21 @@ A regler :
 
 A modifier si possible pour plus de proprete/concision:
 faire une comprehension list pour res / coeff 
+
+
+
+1- checker pour le signe = ( 1 seul, avec un ou des membres de chaque cote) sinon error
+
+2- retirer spaces 
+et split au = en 2 listes (l et r) tout en decoupant dans les listes avec les replace
+
+3- creer 2 dicos (left et right)
+key = power 
+value = coefficient
+> utiliser un regex pour trouver les coeff proprement et les associer dans les dicos avec leurs powers
+
+4- faire un dico qui recupere les resultats entre chaque key/value et les additionne si meme power
+
+
+
+
