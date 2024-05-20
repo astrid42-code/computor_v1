@@ -36,7 +36,7 @@ def parse(av: str):
     # a voir : regex a modifier ou type de recherche (findall, search, ..) a changer
     # pour eviter le 1er et le dernier element en retour (cf l et r apres regex)
 
-    regex = "(([-]?\d+\.?\d*)?\*?[Xx]\^?(\d+)*)|([-]?\d+\.?\d*)"
+    regex = "([-]?\d+\.?\d*)?\*?[Xx]\^?(\d+)*"
     l = re.findall(regex, l)
     print(l)
     r = re.findall(regex, r)
@@ -46,11 +46,25 @@ def parse(av: str):
     d_r = {}
 
     for i in l:
-        d_l[i[2]] = i[1]
+        d_l[i[1]] = float(i[0])
     print(d_l)
     for i in r:
-        d_r[i[2]] = i[1]
+        d_r[i[1]] = float(i[0]) * -1
     print(d_r)
+
+    s = len(d_r.keys())
+    print(s)
+    for key_l in d_l.keys():
+        for key_r in range(s):
+            print(key_l, key_r)
+            print(d_l.keys(), d_r.keys())
+            if key_r == key_l:
+                print(d_l[key_l], d_r[key_r])
+                d_l[key_l] += d_r[key_r]
+                del d_r[key_r]
+                s -= 1
+    print(d_l, d_r)
+
 
     return (res)
 
