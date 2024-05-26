@@ -72,7 +72,7 @@ def parse(av: str):
         count += 1
 
     red = av[av.find('*'):av.find('=')]
-    print("red=", red, "res=", res, "0 = ", res[0])
+    # print("red=", red, "res=", res, "0 = ", res[0])
     # puis recopier tout ce qui est a partir du '*' jusqu au '='
     print(f'Reduced form: {res[0]:g} {red} = 0')  # format :g pour un chiffre apres virgule 
     # cf https://cheatography.com/brianallan/cheat-sheets/python-f-strings-number-formatting/
@@ -126,7 +126,7 @@ def main():
     res = parse(av[1])
 
     print('Polynomial degree:', len(res)-1)
-    print(type(res), res)
+    # print(type(res), res)
     result(res)
 
 

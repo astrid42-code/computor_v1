@@ -124,17 +124,21 @@ def reduced(s: dict, av: str):
 
 
 def result(k: list, v: list):
-    c = v[0]
-    print(len(v))
+    if k[0] == 2:
+        c = v[0] * v[0]
+    else:
+        c = v[0]
     if len(v) > 1:
-        b = v[1]
+        if k[1] == 2:
+            b = v[1] * v[1]
+        else:
+            b = v[1]
     if len(v) == 1:  # http://serge.mehl.free.fr/anx/equ1.html
         if c == 0:
             print('There is infinite solutions')
         else:
             print('There is no solution')
     elif len(v) == 2:  # 1st degree : http://serge.mehl.free.fr/anx/equ1.html
-
         z = -c / b
         print('The solution is :\n', z, sep='')
     elif len(v) == 3:  # 2nd degree
