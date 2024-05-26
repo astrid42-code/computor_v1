@@ -123,38 +123,63 @@ def reduced(s: dict, av: str):
 #             print('No real solution, discriminant is strictly negative :', discriminant)
 
 
-def result(k: list, v: list):
-    if k[0] == 2:
-        c = v[0] * v[0]
-    else:
-        c = v[0]
-    if len(v) > 1:
-        if k[1] == 2:
-            b = v[1] * v[1]
-        else:
-            b = v[1]
-    if len(v) == 1:  # http://serge.mehl.free.fr/anx/equ1.html
-        if c == 0:
+def result(k: list, v: list, degree: int):
+    # print(k, v, degree)
+    a = v[0]
+    if degree == 0:
+        if a == 0:
             print('There is infinite solutions')
         else:
             print('There is no solution')
-    elif len(v) == 2:  # 1st degree : http://serge.mehl.free.fr/anx/equ1.html
-        z = -c / b
+    elif degree == 1:
+        b = v[1]
+        z = -a / b
         print('The solution is :\n', z, sep='')
-    elif len(v) == 3:  # 2nd degree
-        a = v[2]
+    elif degree == 2:
+        if len(k) == 3:
+            b = v[1]
+            c = v[2]
+        elif len(k) == 2:
+            c = v[1]
+            if k[0] == 0:
+                b = 0
+            elif k[0] == 1:
+                b = v[0]
+                a = 0
+        elif len(k) == 1:
+            c = v[0]
+            a = 0
+            b = 0
         # https://www.maths-et-tiques.fr/telech/20Poly.pdf
-        discriminant = (b ** 2) - (4 * a * c)
-        print(discriminant)
+        discriminant = (b ** 2) - (4 * c * a)
+        # print(discriminant)
         if discriminant > 0:
-            z1 = (-b - math.sqrt(discriminant)) / (2 * a) # z1 = -b-√discriminant / 2a
-            z2 = (-b + math.sqrt(discriminant)) / (2 * a) # z2 = -b+√discriminant / 2a
+            z1 = (-b - math.sqrt(discriminant)) / (2 * c) # z1 = -b-√discriminant / 2a
+            z2 = (-b + math.sqrt(discriminant)) / (2 * c) # z2 = -b+√discriminant / 2a
             print('Discriminant is strictly positive, the two solutions are:\n{0:.5f}'.format(z1), '\n{0:.5f}'.format(z2), sep='')
         elif discriminant == 0:
-            z0 = -(b / (2 * a))
+            z0 = -(b / (2 * c))
             print('The solution is:\n', z0)
         elif discriminant < 0:
             print('No real solution, discriminant is strictly negative :', discriminant)
+
+    # elif len(v) == 2:  # 1st degree : http://serge.mehl.free.fr/anx/equ1.html
+    #     z = -c / b
+    #     print('The solution is :\n', z, sep='')
+    # elif len(v) == 3:  # 2nd degree
+    #     a = v[2]
+    #     # https://www.maths-et-tiques.fr/telech/20Poly.pdf
+    #     discriminant = (b ** 2) - (4 * a * c)
+    #     print(discriminant)
+    #     if discriminant > 0:
+    #         z1 = (-b - math.sqrt(discriminant)) / (2 * a) # z1 = -b-√discriminant / 2a
+    #         z2 = (-b + math.sqrt(discriminant)) / (2 * a) # z2 = -b+√discriminant / 2a
+    #         print('Discriminant is strictly positive, the two solutions are:\n{0:.5f}'.format(z1), '\n{0:.5f}'.format(z2), sep='')
+    #     elif discriminant == 0:
+    #         z0 = -(b / (2 * a))
+    #         print('The solution is:\n', z0)
+    #     elif discriminant < 0:
+    #         print('No real solution, discriminant is strictly negative :', discriminant)
 
 
 def main():
@@ -187,7 +212,7 @@ def main():
 
 
     # result(res)
-    result(l_k, l_v)
+    result(l_k, l_v, degree)
 
 
 if __name__ == "__main__":
