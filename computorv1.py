@@ -126,6 +126,7 @@ def main():
     res = parse(av[1])
 
     print('Polynomial degree:', len(res)-1)
+    print(type(res), res)
     result(res)
 
 

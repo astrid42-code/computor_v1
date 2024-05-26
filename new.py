@@ -63,7 +63,7 @@ def parse(av: str):
     # ordonner le dico pour affichage reduced
     s = dict(sorted(tmp.items()))
 
-    return (res, s)
+    return (s)
 
 
 def reduced(s: dict, av: str):
@@ -73,43 +73,81 @@ def reduced(s: dict, av: str):
     # imprimer l equation en recuperant les keys pour les puissances et les values pour les coeff
 
     for k, v in s.items():
+        # print('1', s)
         if v > 0 and k is not min(s.keys()) :
             res += ' + '
         if v.is_integer():
-            v2 = int(v)
-            res += str(v2)
+            s[k] = int(v)
         else:
-            v = round(v, 1)  # arrondir a un chiffre apres la virgule
-            res += ' - ' + str(v * -1)
-        res += ' ' + red + '^' + str(k)
+            s[k] = round(v, 1)  # arrondir a un chiffre apres la virgule
+        # print('2', s)
+        if v < 0:
+            res += ' - ' + str(s[k] * -1) + red + '^' + str(k)
+            s[k] = v * -1
+            # res += str(s[k])
+        # print(res)
+        else:
+            res += str(s[k]) + ' ' + red + '^' + str(k)
+        # print(res)
     print(f'Reduced form: {res} = 0')
+    return (s)
 
 
-def result(res):
-    # faire 4 cas en fct du degre : 0, 1, 2, tout le reste
-    a = res[0]
-    if len(res) > 1:
-        b = res[1]
-    if len(res) == 1:  # http://serge.mehl.free.fr/anx/equ1.html
-        if a == 0:
+# def result(res):
+#     # faire 4 cas en fct du degre : 0, 1, 2, tout le reste
+#     a = res[0]
+#     if len(res) > 1:
+#         b = res[1]
+#     if len(res) == 1:  # http://serge.mehl.free.fr/anx/equ1.html
+#         if a == 0:
+#             print('There is infinite solutions')
+#         else:
+#             print('There is no solution')
+#     elif len(res) == 2:  # 1st degree : http://serge.mehl.free.fr/anx/equ1.html
+#         z = -a / b
+#         print('The solution is :\n', z, sep='')
+#     elif len(res) == 3:  # 2nd degree
+#         # b = res[1]
+#         c = res[2]
+#         # https://www.maths-et-tiques.fr/telech/20Poly.pdf
+#         discriminant = (b ** 2) - (4 * c * a)
+#         # print(discriminant)
+#         if discriminant > 0:
+#             z1 = (-b - math.sqrt(discriminant)) / (2 * c) # z1 = -b-√discriminant / 2a
+#             z2 = (-b + math.sqrt(discriminant)) / (2 * c) # z2 = -b+√discriminant / 2a
+#             print('Discriminant is strictly positive, the two solutions are:\n{0:.5f}'.format(z1), '\n{0:.5f}'.format(z2), sep='')
+#         elif discriminant == 0:
+#             z0 = -(b / (2 * c))
+#             print('The solution is:\n', z0)
+#         elif discriminant < 0:
+#             print('No real solution, discriminant is strictly negative :', discriminant)
+
+
+def result(k: list, v: list):
+    c = v[0]
+    print(len(v))
+    if len(v) > 1:
+        b = v[1]
+    if len(v) == 1:  # http://serge.mehl.free.fr/anx/equ1.html
+        if c == 0:
             print('There is infinite solutions')
         else:
             print('There is no solution')
-    elif len(res) == 2:  # 1st degree : http://serge.mehl.free.fr/anx/equ1.html
-        z = -a / b
+    elif len(v) == 2:  # 1st degree : http://serge.mehl.free.fr/anx/equ1.html
+
+        z = -c / b
         print('The solution is :\n', z, sep='')
-    elif len(res) == 3:  # 2nd degree
-        # b = res[1]
-        c = res[2]
+    elif len(v) == 3:  # 2nd degree
+        a = v[2]
         # https://www.maths-et-tiques.fr/telech/20Poly.pdf
-        discriminant = (b ** 2) - (4 * c * a)
-        # print(discriminant)
+        discriminant = (b ** 2) - (4 * a * c)
+        print(discriminant)
         if discriminant > 0:
-            z1 = (-b - math.sqrt(discriminant)) / (2 * c) # z1 = -b-√discriminant / 2a
-            z2 = (-b + math.sqrt(discriminant)) / (2 * c) # z2 = -b+√discriminant / 2a
+            z1 = (-b - math.sqrt(discriminant)) / (2 * a) # z1 = -b-√discriminant / 2a
+            z2 = (-b + math.sqrt(discriminant)) / (2 * a) # z2 = -b+√discriminant / 2a
             print('Discriminant is strictly positive, the two solutions are:\n{0:.5f}'.format(z1), '\n{0:.5f}'.format(z2), sep='')
         elif discriminant == 0:
-            z0 = -(b / (2 * c))
+            z0 = -(b / (2 * a))
             print('The solution is:\n', z0)
         elif discriminant < 0:
             print('No real solution, discriminant is strictly negative :', discriminant)
@@ -127,20 +165,25 @@ def main():
 
     # res = liste des elements de l equation
     # sort : dico des elements
-    res, sort = parse(av[1])
+    sort = parse(av[1])
+
+    l_k = [k for k in sort.keys()]
+    l_v = [int(v) if v.is_integer() else round(v, 1) for v in sort.values() ]
+    # print(l_k, l_v)
 
     # reduced fct :
-    reduced(sort, av[1])
+    s = reduced(sort, av[1])
 
     # degree :
     degree = max(sort.keys())
     if float(degree) > 2:
         print('The polynomial degree is strictly greater than 2, I can\'t solve.')
 
-
-
     print('Polynomial degree:', degree)
-    result(res)
+
+
+    # result(res)
+    result(l_k, l_v)
 
 
 if __name__ == "__main__":
