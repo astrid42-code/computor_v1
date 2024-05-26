@@ -44,26 +44,28 @@ def parse(av: str):
 
     d_l = {}
     d_r = {}
+    tmp = {}
 
     for i in l:
         d_l[i[1]] = float(i[0])
-    print(d_l)
+    print("l=",d_l)
     for i in r:
         d_r[i[1]] = float(i[0]) * -1
-    print(d_r)
+    print("r=",d_r)
 
-    s = len(d_r.keys())
-    print(s)
     for key_l in d_l.keys():
-        for key_r in range(s):
-            print(key_l, key_r)
-            print(d_l.keys(), d_r.keys())
+        # print("dl", key_l)
+        if key_l not in d_r:
+            tmp[key_l] = d_l[key_l]
+        for key_r in d_r.keys():
             if key_r == key_l:
-                print(d_l[key_l], d_r[key_r])
-                d_l[key_l] += d_r[key_r]
-                del d_r[key_r]
-                s -= 1
-    print(d_l, d_r)
+                tmp[key_l] = d_l[key_l] + d_r[key_r]
+
+            elif key_r not in d_l:
+                tmp[key_r] = d_r[key_r]
+                print("tmp3",tmp)
+    print(d_l, d_r, tmp)
+
 
 
     return (res)
