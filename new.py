@@ -146,6 +146,7 @@ def result(k: list, v: list, degree: int):
             elif k[0] == 1:
                 b = v[0]
                 a = 0
+            print(a, b, c)
         elif len(k) == 1:
             c = v[0]
             a = 0
