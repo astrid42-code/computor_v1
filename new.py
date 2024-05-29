@@ -146,13 +146,13 @@ def result(k: list, v: list, degree: int):
             elif k[0] == 1:
                 b = v[0]
                 a = 0
-            print(a, b, c)
         elif len(k) == 1:
             c = v[0]
             a = 0
             b = 0
         # https://www.maths-et-tiques.fr/telech/20Poly.pdf
         discriminant = (b ** 2) - (4 * c * a)
+        # print(a, b, c)
         # print(discriminant)
         if discriminant > 0:
             z1 = (-b - math.sqrt(discriminant)) / (2 * c) # z1 = -b-√discriminant / 2a
