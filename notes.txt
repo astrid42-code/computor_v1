@@ -34,18 +34,7 @@ implemented yourself.
 If you work in a compilable language (C/C++ in particular), you will present a
 Makefile that includes the usual set of rules.
 
-A regler : 
-- nombres negatifs (1er et dernier terme de l equation)
+
 
 A modifier si possible pour plus de proprete/concision:
 faire une comprehension list pour res / coeff 
-
-
-calculs : 
-1 faire les calculs comme si tout etait simple ( puissances de 0 a 2 dans l ordre et sans qu il en manque)
-2 ATTENTION ensuite faire des conditions pour a, b et z (les coeffs) en les associant a leurs puissance 
-ex 5 * X^1 + 3 * X^2 = 0
-c = v[0] * v[0] si k[0] == 2 (pour len == 1)
-b = v[1] * v[1] si k[1] == 2 (pour len > 1)
-> verifier comment ca se passe quand il y a x^2 : ca determine le degre non??? ou c est le nombre de membre de l equation qui determine degre ?
-
