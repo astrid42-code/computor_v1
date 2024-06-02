@@ -162,7 +162,15 @@ def result(k: list, v: list, degree: int):
             z0 = -(b / (2 * c))
             print('The solution is:\n', z0)
         elif discriminant < 0:
-            print('No real solution, discriminant is strictly negative :', discriminant)
+            # print('No real solution, discriminant is strictly negative :', discriminant)
+            # imaginary numbres solutions:
+            discriminant *= -1  # valeur absolue du discriminant (car pas de racine carree d un nbr negatif)
+            # partie reelle
+            x = -b / (2 * c) 
+            # parties imaginaires
+            y1 = - math.sqrt(discriminant) / (2 * c) #
+            y2 = math.sqrt(discriminant) / (2 * c)
+            print('Discriminant is strictly negative, the two solutions are:\n', x, ' + i * {0:.5f}'.format(y1), '\n',  x, ' + i * {0:.5f}'.format(y2), sep='')
 
     # elif len(v) == 2:  # 1st degree : http://serge.mehl.free.fr/anx/equ1.html
     #     z = -c / b
@@ -218,3 +226,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# nombres imqginqires :
+# Le carré d'un nombre imaginaire pur est un nombre réel négatif 
+# ou nul, et les racines carrées d'un nombre réel négatif sont des imaginaires purs. 
