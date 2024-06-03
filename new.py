@@ -1,11 +1,10 @@
 import sys
 import re
 import math
-# from decimal import *
 
 
 def check_equal(ac: int, av: str):
-    c = av.count("=")  # faire une variable dans une classe pour mettre a true ou false la validite de l equation?
+    c = av.count("=")
     if c != 1:
         print("There must be at least one equal sign, no more, no less!")
         exit()
@@ -14,7 +13,6 @@ def check_equal(ac: int, av: str):
 def parse(av: str):
     # list of the equation terms
     res = re.sub(" ", "", av)
-    # print("res1=", res)
     # https://favtutor.com/blogs/replace-multiple-characters-in-string-python
     # https://www.w3schools.com/python/ref_string_translate.asp
 
@@ -26,16 +24,6 @@ def parse(av: str):
         exit()
     
     print("Let's have some fun with polynomial equations!")
-    
-    # print(l, r)
-
-    # valid1 = re.findall(r'^(-\d+(\.\d+)?\*|d+(\.d+)?\*)?X(\^d+)?$', l)
-    # valid2 = re.search(r'^(-[0-9]+(\.[0-9]+)?\*|[0-9]+(\.[0-9]+)?\*)?X(\^[0-9]+)?$', r)
-    # print(valid1, l, valid2, r)
-
-
-    # a voir : regex a modifier ou type de recherche (findall, search, ..) a changer
-    # pour eviter le 1er et le dernier element en retour (cf l et r apres regex)
 
     regex = "([-]?\d+\.?\d*)?\*?[Xx]\^?(\d+)*"
     l = re.findall(regex, l)
@@ -67,64 +55,26 @@ def parse(av: str):
 
 
 def reduced(s: dict, av: str):
-    # print(s)
     red = av[av.find('*'):av.find('^')]
     res = ''
-    # imprimer l equation en recuperant les keys pour les puissances et les values pour les coeff
 
     for k, v in s.items():
-        # print('1', s)
         if v > 0 and k is not min(s.keys()) :
             res += ' + '
         if v.is_integer():
             s[k] = int(v)
         else:
-            s[k] = round(v, 1)  # arrondir a un chiffre apres la virgule
-        # print('2', s)
+            s[k] = round(v, 1)
         if v < 0:
             res += ' - ' + str(s[k] * -1) + red + '^' + str(k)
             s[k] = v * -1
-            # res += str(s[k])
-        # print(res)
         else:
             res += str(s[k]) + ' ' + red + '^' + str(k)
-        # print(res)
     print(f'Reduced form: {res} = 0')
     return (s)
 
 
-# def result(res):
-#     # faire 4 cas en fct du degre : 0, 1, 2, tout le reste
-#     a = res[0]
-#     if len(res) > 1:
-#         b = res[1]
-#     if len(res) == 1:  # http://serge.mehl.free.fr/anx/equ1.html
-#         if a == 0:
-#             print('There is infinite solutions')
-#         else:
-#             print('There is no solution')
-#     elif len(res) == 2:  # 1st degree : http://serge.mehl.free.fr/anx/equ1.html
-#         z = -a / b
-#         print('The solution is :\n', z, sep='')
-#     elif len(res) == 3:  # 2nd degree
-#         # b = res[1]
-#         c = res[2]
-#         # https://www.maths-et-tiques.fr/telech/20Poly.pdf
-#         discriminant = (b ** 2) - (4 * c * a)
-#         # print(discriminant)
-#         if discriminant > 0:
-#             z1 = (-b - math.sqrt(discriminant)) / (2 * c) # z1 = -b-√discriminant / 2a
-#             z2 = (-b + math.sqrt(discriminant)) / (2 * c) # z2 = -b+√discriminant / 2a
-#             print('Discriminant is strictly positive, the two solutions are:\n{0:.5f}'.format(z1), '\n{0:.5f}'.format(z2), sep='')
-#         elif discriminant == 0:
-#             z0 = -(b / (2 * c))
-#             print('The solution is:\n', z0)
-#         elif discriminant < 0:
-#             print('No real solution, discriminant is strictly negative :', discriminant)
-
-
 def result(k: list, v: list, degree: int):
-    # print(k, v, degree)
     a = v[0]
     if degree == 0:
         if a == 0:
@@ -152,8 +102,7 @@ def result(k: list, v: list, degree: int):
             b = 0
         # https://www.maths-et-tiques.fr/telech/20Poly.pdf
         discriminant = (b ** 2) - (4 * c * a)
-        # print(a, b, c)
-        # print(discriminant)
+
         if discriminant > 0:
             z1 = (-b - math.sqrt(discriminant)) / (2 * c) # z1 = -b-√discriminant / 2a
             z2 = (-b + math.sqrt(discriminant)) / (2 * c) # z2 = -b+√discriminant / 2a
@@ -162,33 +111,14 @@ def result(k: list, v: list, degree: int):
             z0 = -(b / (2 * c))
             print('The solution is:\n', z0)
         elif discriminant < 0:
-            # print('No real solution, discriminant is strictly negative :', discriminant)
             # imaginary numbres solutions:
             discriminant *= -1  # valeur absolue du discriminant (car pas de racine carree d un nbr negatif)
             # partie reelle
             x = -b / (2 * c) 
             # parties imaginaires
-            y1 = - math.sqrt(discriminant) / (2 * c) #
+            y1 = - math.sqrt(discriminant) / (2 * c)
             y2 = math.sqrt(discriminant) / (2 * c)
-            print('Discriminant is strictly negative, the two solutions are:\n', x, ' + i * {0:.5f}'.format(y1), '\n',  x, ' + i * {0:.5f}'.format(y2), sep='')
-
-    # elif len(v) == 2:  # 1st degree : http://serge.mehl.free.fr/anx/equ1.html
-    #     z = -c / b
-    #     print('The solution is :\n', z, sep='')
-    # elif len(v) == 3:  # 2nd degree
-    #     a = v[2]
-    #     # https://www.maths-et-tiques.fr/telech/20Poly.pdf
-    #     discriminant = (b ** 2) - (4 * a * c)
-    #     print(discriminant)
-    #     if discriminant > 0:
-    #         z1 = (-b - math.sqrt(discriminant)) / (2 * a) # z1 = -b-√discriminant / 2a
-    #         z2 = (-b + math.sqrt(discriminant)) / (2 * a) # z2 = -b+√discriminant / 2a
-    #         print('Discriminant is strictly positive, the two solutions are:\n{0:.5f}'.format(z1), '\n{0:.5f}'.format(z2), sep='')
-    #     elif discriminant == 0:
-    #         z0 = -(b / (2 * a))
-    #         print('The solution is:\n', z0)
-    #     elif discriminant < 0:
-    #         print('No real solution, discriminant is strictly negative :', discriminant)
+            print('Discriminant is strictly negative, the two solutions are:\n{0:.5f}'.format(x), ' + i * {0:.5f}'.format(y1), '\n{0:.5f}'.format(x), ' + i * {0:.5f}'.format(y2), sep='')
 
 
 def main():
@@ -201,7 +131,6 @@ def main():
 
     check_equal(ac, av[1])
 
-    # res = liste des elements de l equation
     # sort : dico des elements
     sort = parse(av[1])
 
@@ -228,6 +157,6 @@ if __name__ == "__main__":
     main()
 
 
-# nombres imqginqires :
+# nombres imqginaires :
 # Le carré d'un nombre imaginaire pur est un nombre réel négatif 
 # ou nul, et les racines carrées d'un nombre réel négatif sont des imaginaires purs. 
