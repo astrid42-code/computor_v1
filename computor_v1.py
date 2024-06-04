@@ -1,3 +1,9 @@
+import sys
+from parse import check_equal, parse
+from reduced import reduced
+from calculation import result
+
+
 def main():
     av = sys.argv
     ac = len(av)
@@ -21,9 +27,7 @@ def main():
     degree = max(sort.keys())
     if float(degree) > 2:
         print('The polynomial degree is strictly greater than 2, I can\'t solve.')
-
     print('Polynomial degree:', degree)
-
 
     # result(res)
     result(l_k, l_v, degree)
