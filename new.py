@@ -3,7 +3,14 @@ import re
 import math
 
 
-def check_equal(ac: int, av: str):
+def check_equal(av: str):
+    '''
+    Checks if equal sign is unique.
+    Exits program if more or less than one.
+    Parameter:
+        av (str) : av[1] 
+    '''
+
     c = av.count("=")
     if c != 1:
         print("There must be at least one equal sign, no more, no less!")
@@ -11,6 +18,16 @@ def check_equal(ac: int, av: str):
 
 
 def parse(av: str):
+    '''
+    Parses av[1]: 
+        - checks format
+        - creates 2 lists for left and right members of the equation
+        - creates a temp dictionnary with both left and right members 
+          where keys = powers and value = coeffs
+
+    Returns a sorted dictionnary (sorted by keys)
+    '''
+
     # list of the equation terms
     res = re.sub(" ", "", av)
     # https://favtutor.com/blogs/replace-multiple-characters-in-string-python
@@ -55,6 +72,16 @@ def parse(av: str):
 
 
 def reduced(s: dict, av: str):
+    '''
+    Creates a string with keys and volues of the dictionnary
+    to print the reduced form of the equation.
+    Parameters:
+        - s (dict): dictionnary with powers (keys) abd coeffs(values)
+        - av (str): av[1]
+
+    Example of output :
+    4 * X^0 + 2 * X^1 + 1 * X^2 = 0
+    '''
     red = av[av.find('*'):av.find('^')]
     res = ''
 
@@ -71,10 +98,17 @@ def reduced(s: dict, av: str):
         else:
             res += str(s[k]) + ' ' + red + '^' + str(k)
     print(f'Reduced form: {res} = 0')
-    return (s)
 
 
 def result(k: list, v: list, degree: int):
+    '''
+    Computes equation
+    Parameters:
+        - k, v (list): lists ok keys (powers) and values (coefficients)
+        - degree (int): compute degree
+    
+    
+    '''
     a = v[0]
     if degree == 0:
         if a == 0:
@@ -111,7 +145,7 @@ def result(k: list, v: list, degree: int):
             z0 = -(b / (2 * c))
             print('The solution is:\n', z0)
         elif discriminant < 0:
-            # imaginary numbres solutions:
+            # imaginary numbers solutions:
             discriminant *= -1  # valeur absolue du discriminant (car pas de racine carree d un nbr negatif)
             # partie reelle
             x = -b / (2 * c) 
@@ -129,17 +163,16 @@ def main():
         print("Wrong number of arguments")
         exit()
 
-    check_equal(ac, av[1])
+    check_equal(av[1])
 
     # sort : dico des elements
     sort = parse(av[1])
 
     l_k = [k for k in sort.keys()]
     l_v = [int(v) if v.is_integer() else round(v, 1) for v in sort.values() ]
-    # print(l_k, l_v)
 
     # reduced fct :
-    s = reduced(sort, av[1])
+    reduced(sort, av[1])
 
     # degree :
     degree = max(sort.keys())
@@ -149,7 +182,7 @@ def main():
     print('Polynomial degree:', degree)
 
 
-    # result(res)
+    # result
     result(l_k, l_v, degree)
 
 
