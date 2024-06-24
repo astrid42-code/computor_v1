@@ -37,10 +37,16 @@ def parse(av: str):
     l = res[0]
     r = res[1]
     if (len(r) == 0 or len(l) == 0):
-        print("Wrong format")
+        print("Input is invalid : wrong format :(")
         exit()
+
+    autres checks a faire pour valider l input : nombres et pas de lettres autres que X, 
+    check pour signes * + - et ^
+    et autres?
+    (print les listes pour voir si ce sont bien des float en values)
+    comment checker la validite de l input en general de facon simple? (voir le regex de Louis!!!)
     
-    print("Let's have some fun with polynomial equations!")
+    print("Input is valid, good job :) Now, let's have some fun with polynomial equations!")
 
     regex = "([-]?\d+\.?\d*)?\*?[Xx]\^?(\d+)*"
     l = re.findall(regex, l)
@@ -155,39 +161,39 @@ def result(k: list, v: list, degree: int):
             print('Discriminant is strictly negative, the two solutions are:\n{0:.5f}'.format(x), ' + i * {0:.5f}'.format(y1), '\n{0:.5f}'.format(x), ' + i * {0:.5f}'.format(y2), sep='')
 
 
-def main():
-    av = sys.argv
-    ac = len(av)
+# def main():
+#     av = sys.argv
+#     ac = len(av)
 
-    if ac != 2:
-        print("Wrong number of arguments")
-        exit()
+#     if ac != 2:
+#         print("Wrong number of arguments")
+#         exit()
 
-    check_equal(av[1])
+#     check_equal(av[1])
 
-    # sort : dico des elements
-    sort = parse(av[1])
+#     # sort : dico des elements
+#     sort = parse(av[1])
 
-    l_k = [k for k in sort.keys()]
-    l_v = [int(v) if v.is_integer() else round(v, 1) for v in sort.values() ]
+#     l_k = [k for k in sort.keys()]
+#     l_v = [int(v) if v.is_integer() else round(v, 1) for v in sort.values() ]
 
-    # reduced fct :
-    reduced(sort, av[1])
+#     # reduced fct :
+#     reduced(sort, av[1])
 
-    # degree :
-    degree = max(sort.keys())
-    if float(degree) > 2:
-        print('The polynomial degree is strictly greater than 2, I can\'t solve.')
+#     # degree :
+#     degree = max(sort.keys())
+#     if float(degree) > 2:
+#         print('The polynomial degree is strictly greater than 2, I can\'t solve.')
 
-    print('Polynomial degree:', degree)
-
-
-    # result
-    result(l_k, l_v, degree)
+#     print('Polynomial degree:', degree)
 
 
-if __name__ == "__main__":
-    main()
+#     # result
+#     result(l_k, l_v, degree)
+
+
+# if __name__ == "__main__":
+#     main()
 
 
 # nombres imqginaires :
