@@ -3,10 +3,14 @@ import re
 import math
 
 
-def check_equal(av: str):
+def equal(av: str):
     '''
-    Checks if equal sign is unique.
-    Exits program if more or less than one.
+    Checks if expression is valid :
+    - equal sign is unique.
+        returns 1 if more or less than one
+    - members of the equation are valid :
+        positive or negative int or float, + or -, * X^ or *, positive int or float
+        returns 1 if not valid, 0 if valid
     Parameter:
         av (str) : av[1] 
     '''
@@ -14,8 +18,24 @@ def check_equal(av: str):
     c = av.count("=")
     if c != 1:
         print("There must be at least one equal sign, no more, no less!")
-        exit()
+        return (1)
+    return (0)
 
+def valid(l: str, r: str) -> int:
+    '''
+    Checks if expression is valid :
+    - equal sign is unique.
+        returns 1 if more or less than one
+    - members of the equation are valid :
+        positive or negative int or float, + or -, * X^ or *, positive int or float
+        returns 1 if not valid, 0 if valid
+    '''
+    # faire regex analysant les differents membres de l'equation
+    # valid = re.search( [+/-] [int ou float] ["* X^"] [0-9])
+    # if valid == NONE:
+    #     print("Unvalid expression, respect this format : int/float * X^ positive int")
+    #     return (1)
+    return (0)
 
 def parse(av: str):
     '''
@@ -39,12 +59,16 @@ def parse(av: str):
     if (len(r) == 0 or len(l) == 0):
         print("Input is invalid : wrong format :(")
         exit()
+    if valid(l, r) == 1:
+        exit()
+    
+    print(l, r)
 
-    autres checks a faire pour valider l input : nombres et pas de lettres autres que X, 
-    check pour signes * + - et ^
-    et autres?
-    (print les listes pour voir si ce sont bien des float en values)
-    comment checker la validite de l input en general de facon simple? (voir le regex de Louis!!!)
+    # autres checks a faire pour valider l input : nombres et pas de lettres autres que X, 
+    # check pour signes * + - et ^
+    # et autres? ex : si un des deux termes est juste 0, devrait etre ok?
+    # (print les listes pour voir si ce sont bien des float en values)
+    # comment checker la validite de l input en general de facon simple? (voir le regex de Louis!!!)
     
     print("Input is valid, good job :) Now, let's have some fun with polynomial equations!")
 
@@ -169,7 +193,9 @@ def result(k: list, v: list, degree: int):
 #         print("Wrong number of arguments")
 #         exit()
 
-#     check_equal(av[1])
+#   equal check
+    # if equal(av[1]) == 1:
+    #     exit()
 
 #     # sort : dico des elements
 #     sort = parse(av[1])

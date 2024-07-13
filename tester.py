@@ -1,4 +1,4 @@
-from new import check_equal, parse, reduced, result
+from new import equal, parse, reduced, result
 import sys
 import re
 import math
@@ -14,13 +14,16 @@ if ac != 2:
 else:
     print("Welcome in computorv1!\nInput is :", av[1])
 
-check_equal(av[1])
+# equal check
+if equal(av[1]) == 1:
+    exit()
 
 # sort : dico des elements
 sort = parse(av[1])
 
 l_k = [k for k in sort.keys()]
 l_v = [int(v) if v.is_integer() else round(v, 1) for v in sort.values() ]
+
 
 # reduced fct :
 reduced(sort, av[1])
