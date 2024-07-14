@@ -31,10 +31,27 @@ def valid(l: str, r: str) -> int:
         returns 1 if not valid, 0 if valid
     '''
     # faire regex analysant les differents membres de l'equation
-    # valid = re.search( [+/-] [int ou float] ["* X^"] [0-9])
-    # if valid == NONE:
-    #     print("Unvalid expression, respect this format : int/float * X^ positive int")
-    #     return (1)
+    # valid = re.search(r, '' [+/-] [int ou float] ["* X^"] [0-9*])
+
+    res_l = re.sub("-", "+", l)
+    res_l = res_l.split('+')
+    res_r = re.sub("-", "+", r)
+    res_r = res_r.split('+')
+    # print(res_l, res_r)
+    for i in res_l:
+        valid = re.search(r'^(-[0-9]+(\.[0-9]+)?\*|[0-9]+(\.[0-9]+)?\*)?\*?X(\^[0-9]+)?$', i)
+        # print(valid)
+        if valid == None:
+            print("Unvalid expression, respect this format : int/float * X^ positive int")
+            return (1)
+    for i in res_r:
+        if i == '0':
+            continue
+        valid = re.search(r'^(-[0-9]+(\.[0-9]+)?\*|[0-9]+(\.[0-9]+)?\*)?\*?X(\^[0-9]+)?$', i)
+        # print(valid)
+        if valid == None:
+            print("Unvalid expression, respect this format : int/float * X^ positive int")
+            return (1)
     return (0)
 
 def parse(av: str):
@@ -61,15 +78,7 @@ def parse(av: str):
         exit()
     if valid(l, r) == 1:
         exit()
-    
-    print(l, r)
 
-    # autres checks a faire pour valider l input : nombres et pas de lettres autres que X, 
-    # check pour signes * + - et ^
-    # et autres? ex : si un des deux termes est juste 0, devrait etre ok?
-    # (print les listes pour voir si ce sont bien des float en values)
-    # comment checker la validite de l input en general de facon simple? (voir le regex de Louis!!!)
-    
     print("Input is valid, good job :) Now, let's have some fun with polynomial equations!")
 
     regex = "([-]?\d+\.?\d*)?\*?[Xx]\^?(\d+)*"
