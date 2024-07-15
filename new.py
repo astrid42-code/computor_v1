@@ -33,8 +33,14 @@ def valid(l: str, r: str) -> int:
     # faire regex analysant les differents membres de l'equation
     # valid = re.search(r, '' [+/-] [int ou float] ["* X^"] [0-9*])
     
-    si premier char de l ou de r est '-' : le supprimer / remplacer par un espace?
-    sinon au split apres ca cree une chaine vide et fait planter le parser
+    # si premier char de l ou de r est '-' : le supprimer / remplacer par un espace?
+    # sinon au split apres ca cree une chaine vide et fait planter le parser
+    ou plutot remove les chaines vides??
+    if l[0] == '-':
+        l.replace('-', '', 1)
+    # if r[0] == '-':
+
+
     res_l = re.sub("-", "+", l)
     res_l = res_l.split('+')
 
