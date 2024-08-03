@@ -1,7 +1,7 @@
 from new import equal, parse, reduced, result
 import sys
 import re
-import math
+
 
 class color:
     g = '\033[92m' # vert

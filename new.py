@@ -1,6 +1,5 @@
 import sys
 import re
-import math
 
 
 class color:
@@ -183,7 +182,7 @@ def result(k: list, v: list, degree: int):
     elif degree == 1:
         b = v[1]
         z = -a / b
-        print(color.b + 'The solution is :\n' + color.n, z, sep='')
+        print(color.b + 'The solution is :\n' + color.n, '{0:.5f}'.format(z), sep='')
     elif degree == 2:
         if len(k) == 3:
             b = v[1]
