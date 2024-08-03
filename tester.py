@@ -8,6 +8,7 @@ class color:
     y = '\033[93m' # jaune
     r = '\033[91m' # rouge
     b = '\033[94m' # blue
+    c = '\033[96m' # cyan
     n = '\033[0m' #gris, couleur normale
 
 # using the tester, means you have to comment main in new.py

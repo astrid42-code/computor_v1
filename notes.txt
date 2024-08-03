@@ -39,5 +39,11 @@ Makefile that includes the usual set of rules.
 A modifier si possible pour plus de proprete/concision:
 faire une comprehension list pour res / coeff 
 
-a terminer : le parsing pour valider input
+a terminer : 
 tester avec des cas vrais et faux + possibilite simple pour l evaluateur de changer les inputs
+
+a faire : 
+mettre les steps dans la resolution mathematiques ( bonus) > done
+revoir le regex de validation
+remplacer math.sqrt !
+

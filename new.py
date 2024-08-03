@@ -8,6 +8,7 @@ class color:
     y = '\033[93m' # jaune
     r = '\033[91m' # rouge
     b = '\033[94m' # blue
+    c = '\033[96m' # cyan
     n = '\033[0m' #gris, couleur normale
 
 
@@ -153,6 +154,9 @@ def reduced(s: dict, av: str):
     print(color.g + 'Reduced form: ' + color.n, f'{res} = 0' )
 
 
+# def ft_sqrt(int n):
+
+
 def result(k: list, v: list, degree: int):
     '''
     Computes equation
@@ -165,13 +169,13 @@ def result(k: list, v: list, degree: int):
     a = v[0]
     if degree == 0:
         if a == 0:
-            print('There is infinite solutions, any real number is a solution')
+            print(color.c + 'There is infinite solutions, any real number is a solution' + color.n)
         else:
-            print('There is no solution')
+            print(color.c + 'There is no solution' + color.n)
     elif degree == 1:
         b = v[1]
         z = -a / b
-        print('The solution is :\n', z, sep='')
+        print(color.b + 'The solution is :\n' + color.n, z, sep='')
     elif degree == 2:
         if len(k) == 3:
             b = v[1]
@@ -188,17 +192,23 @@ def result(k: list, v: list, degree: int):
             a = 0
             b = 0
         # https://www.maths-et-tiques.fr/telech/20Poly.pdf
+        print(color.c + 'Discriminant calculation with discriminant = (b ** 2) - (4 * c * a):' + color.n)
+        print('d = (', b, ' ** 2) - (4 * ', c, ' * ', a, ')', sep='')
         discriminant = (b ** 2) - (4 * c * a)
+        print('d =', discriminant)
 
 # faire une fonction pour remplacer math.sqrt!
 
         if discriminant > 0:
             z1 = (-b - math.sqrt(discriminant)) / (2 * c) # z1 = -b-√discriminant / 2a
             z2 = (-b + math.sqrt(discriminant)) / (2 * c) # z2 = -b+√discriminant / 2a
-            print('Discriminant is strictly positive, the two solutions are:\n{0:.5f}'.format(z1), '\n{0:.5f}'.format(z2), sep='')
+            print(color.c + 'Discriminant is strictly positive, formulas are : ')
+            print('z1 = -b-√discriminant / 2a and z2 = -b+√discriminant / 2a' + color.n)
+            print('z1 = ', z1,'\nz2 = ', z2, sep='')
+            print(color.c + 'The two solutions are:\n' + color.n, '{0:.5f}'.format(z1), '\n{0:.5f}'.format(z2), sep='')
         elif discriminant == 0:
             z0 = -(b / (2 * c))
-            print('The solution is:\n', z0)
+            print(color.c + 'Discriminant is 0. The solution is:\n' + color.n, z0, sep='')
         elif discriminant < 0:
             # imaginary numbers solutions:
             discriminant *= -1  # valeur absolue du discriminant (car pas de racine carree d un nbr negatif)
@@ -207,7 +217,11 @@ def result(k: list, v: list, degree: int):
             # parties imaginaires
             y1 = - math.sqrt(discriminant) / (2 * c)
             y2 = math.sqrt(discriminant) / (2 * c)
-            print('Discriminant is strictly negative, the two solutions are:\n{0:.5f}'.format(x), ' + i * {0:.5f}'.format(y1), '\n{0:.5f}'.format(x), ' + i * {0:.5f}'.format(y2), sep='')
+            print(color.c + 'Discriminant is strictly negative, that implies imaginary numbers with formulas : ')
+            print('real part : x = -b / (2 * c)')
+            print('imaginary part : y1 = -√discriminant / 2a and y2 = √discriminant / 2a' + color.n)
+            print('x = {0:.5f}'.format(x), '\ny1 = {0:.5f}'.format(y1),'\ny2 = {0:.5f}'.format(y2), sep='')
+            print(color.c + 'The two solutions are:\n' + color.n, '{0:.5f}'.format(x), ' + i * {0:.5f}'.format(y1), '\n{0:.5f}'.format(x), ' + i * {0:.5f}'.format(y2), sep='')
 
 
 # def main():
