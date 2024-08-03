@@ -154,7 +154,15 @@ def reduced(s: dict, av: str):
     print(color.g + 'Reduced form: ' + color.n, f'{res} = 0' )
 
 
-# def ft_sqrt(int n):
+def ft_sqrt(n: int):
+    if n < 0:
+        n * -1
+    x = n
+    y = 1
+    while (x - y > 0.000001):
+        x = (x + y) / 2
+        y = n / x
+    return (x)
 
 
 def result(k: list, v: list, degree: int):
@@ -197,14 +205,13 @@ def result(k: list, v: list, degree: int):
         discriminant = (b ** 2) - (4 * c * a)
         print('d =', discriminant)
 
-# faire une fonction pour remplacer math.sqrt!
 
         if discriminant > 0:
-            z1 = (-b - math.sqrt(discriminant)) / (2 * c) # z1 = -b-√discriminant / 2a
-            z2 = (-b + math.sqrt(discriminant)) / (2 * c) # z2 = -b+√discriminant / 2a
+            z1 = (-b - ft_sqrt(discriminant)) / (2 * c) # z1 = -b-√discriminant / 2a
+            z2 = (-b + ft_sqrt(discriminant)) / (2 * c) # z2 = -b+√discriminant / 2a
             print(color.c + 'Discriminant is strictly positive, formulas are : ')
             print('z1 = -b-√discriminant / 2a and z2 = -b+√discriminant / 2a' + color.n)
-            print('z1 = ', z1,'\nz2 = ', z2, sep='')
+            print('z1 = {0:.5f}'.format(z1),'\nz2 = {0:.5f}'.format(z2), sep='')
             print(color.c + 'The two solutions are:\n' + color.n, '{0:.5f}'.format(z1), '\n{0:.5f}'.format(z2), sep='')
         elif discriminant == 0:
             z0 = -(b / (2 * c))
@@ -215,8 +222,8 @@ def result(k: list, v: list, degree: int):
             # partie reelle
             x = -b / (2 * c) 
             # parties imaginaires
-            y1 = - math.sqrt(discriminant) / (2 * c)
-            y2 = math.sqrt(discriminant) / (2 * c)
+            y1 = - ft_sqrt(discriminant) / (2 * c)
+            y2 = ft_sqrt(discriminant) / (2 * c)
             print(color.c + 'Discriminant is strictly negative, that implies imaginary numbers with formulas : ')
             print('real part : x = -b / (2 * c)')
             print('imaginary part : y1 = -√discriminant / 2a and y2 = √discriminant / 2a' + color.n)
