@@ -3,6 +3,13 @@ import sys
 import re
 import math
 
+class color:
+    g = '\033[92m' # vert
+    y = '\033[93m' # jaune
+    r = '\033[91m' # rouge
+    b = '\033[94m' # blue
+    n = '\033[0m' #gris, couleur normale
+
 # using the tester, means you have to comment main in new.py
 
 av = sys.argv
@@ -12,7 +19,7 @@ if ac != 2:
     print("Wrong number of arguments")
     exit()
 else:
-    print("Welcome in computorv1!\nInput is :", av[1])
+    print(color.b + "Welcome in computorv1!" + color.n, color.g + "\nInput is :" + color.n, av[1])
 
 # equal check
 if equal(av[1]) == 1:
@@ -30,10 +37,10 @@ reduced(sort, av[1])
 
 # degree :
 degree = max(sort.keys())
+print(color.g + 'Polynomial degree:' + color.n, degree)
 if float(degree) > 2:
-    print('The polynomial degree is strictly greater than 2, I can\'t solve.')
+    print(color.r + 'The polynomial degree is strictly greater than 2, I can\'t solve.' + color.n)
 
-print('Polynomial degree:', degree)
 
 
 # result

@@ -3,6 +3,14 @@ import re
 import math
 
 
+class color:
+    g = '\033[92m' # vert
+    y = '\033[93m' # jaune
+    r = '\033[91m' # rouge
+    b = '\033[94m' # blue
+    n = '\033[0m' #gris, couleur normale
+
+
 def equal(av: str):
     '''
     Checks if expression is valid :
@@ -43,12 +51,12 @@ def valid(l: str, r: str) -> int:
     if res_r[0] == '':
         res_r.remove('')  
 
-    print(res_l, res_r)
+    # print(res_l, res_r)
     for i in res_l:
         valid = re.search(r'^(-[0-9]+(\.[0-9]+)?\*|[0-9]+(\.[0-9]+)?\*)?\*?X(\^[0-9]+)?$', i)
         # print(valid)
         if valid == None:
-            print("Unvalid expression, respect this format : int/float * X^ positive int")
+            print(color.r + "Unvalid expression, respect this format : int/float * X^ positive int" + color.n)
             return (1)
     for i in res_r:
         if i == '0':
@@ -56,7 +64,7 @@ def valid(l: str, r: str) -> int:
         valid = re.search(r'^(-[0-9]+(\.[0-9]+)?\*|[0-9]+(\.[0-9]+)?\*)?\*?X(\^[0-9]+)?$', i)
         # print(valid)
         if valid == None:
-            print("Unvalid expression, respect this format : int/float * X^ positive int")
+            print(color.r + "Unvalid expression, respect this format : int/float * X^ positive int" + color.n)
             return (1)
     return (0)
 
@@ -80,12 +88,12 @@ def parse(av: str):
     l = res[0]
     r = res[1]
     if (len(r) == 0 or len(l) == 0):
-        print("Input is invalid : wrong format :(")
+        print(color.r + "Input is invalid : wrong format :(" + color.n)
         exit()
     if valid(l, r) == 1:
         exit()
 
-    print("Input is valid, good job :) Now, let's have some fun with polynomial equations!")
+    print(color.y + "Input is valid, good job :) Now, let's have some fun with polynomial equations!" + color.n)
 
     regex = "([-]?\d+\.?\d*)?\*?[Xx]\^?(\d+)*"
     l = re.findall(regex, l)
@@ -142,7 +150,7 @@ def reduced(s: dict, av: str):
             s[k] = v * -1
         else:
             res += str(s[k]) + ' ' + red + '^' + str(k)
-    print(f'Reduced form: {res} = 0')
+    print(color.g + 'Reduced form: ' + color.n, f'{res} = 0' )
 
 
 def result(k: list, v: list, degree: int):
@@ -157,7 +165,7 @@ def result(k: list, v: list, degree: int):
     a = v[0]
     if degree == 0:
         if a == 0:
-            print('There is infinite solutions')
+            print('There is infinite solutions, any real number is a solution')
         else:
             print('There is no solution')
     elif degree == 1:
@@ -181,6 +189,8 @@ def result(k: list, v: list, degree: int):
             b = 0
         # https://www.maths-et-tiques.fr/telech/20Poly.pdf
         discriminant = (b ** 2) - (4 * c * a)
+
+# faire une fonction pour remplacer math.sqrt!
 
         if discriminant > 0:
             z1 = (-b - math.sqrt(discriminant)) / (2 * c) # z1 = -b-√discriminant / 2a
