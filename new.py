@@ -53,7 +53,7 @@ def valid(l: str, r: str) -> int:
 
     # print(res_l, res_r)
     for i in res_l:
-        valid = re.search(r'^(-[0-9]+(\.[0-9]+)?\*|[0-9]+(\.[0-9]+)?\*)?\*?X(\^[0-9]+)?$', i)
+        valid = re.search(r'^(-[0-9]+(\.[0-9]+)?\*|[0-9]+(\.[0-9]+)?\*)\*?X(\^[0-9]+)?$', i)
         # print(valid)
         if valid == None:
             print(color.r + "Unvalid expression, respect this format : int/float * X^ positive int" + color.n)
@@ -61,7 +61,7 @@ def valid(l: str, r: str) -> int:
     for i in res_r:
         if i == '0':
             continue
-        valid = re.search(r'^(-[0-9]+(\.[0-9]+)?\*|[0-9]+(\.[0-9]+)?\*)?\*?X(\^[0-9]+)?$', i)
+        valid = re.search(r'^(-[0-9]+(\.[0-9]+)?\*|[0-9]+(\.[0-9]+)?\*)\*?X(\^[0-9]+)?$', i)
         # print(valid)
         if valid == None:
             print(color.r + "Unvalid expression, respect this format : int/float * X^ positive int" + color.n)
@@ -150,7 +150,7 @@ def reduced(s: dict, av: str):
             s[k] = v * -1
         else:
             res += str(s[k]) + ' ' + red + '^' + str(k)
-    print(color.g + 'Reduced form: ' + color.n, f'{res} = 0' )
+    print(color.g + 'Reduced form: ' + color.n, f'{res} = 0', sep='')
 
 
 def ft_sqrt(n: int):

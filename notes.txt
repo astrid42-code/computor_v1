@@ -44,6 +44,6 @@ tester avec des cas vrais et faux + possibilite simple pour l evaluateur de chan
 
 a faire : 
 mettre les steps dans la resolution mathematiques ( bonus) > done
-revoir le regex de validation
+revoir le regex de validation ok
 remplacer math.sqrt > ok
 faire une liste d'equations a tester (vraies, fausses, solutions multiples, reellesm, imaginaires, ...) pour evaluateur
