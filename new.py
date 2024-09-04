@@ -87,6 +87,7 @@ def parse(av: str):
     res = res.split('=')
     l = res[0]
     r = res[1]
+
     if (len(r) == 0 or len(l) == 0):
         print(color.r + "Input is invalid : wrong format :(" + color.n)
         exit()
@@ -104,9 +105,15 @@ def parse(av: str):
     tmp = {}
 
     for i in l:
-        d_l[int(i[1])] = float(i[0])
+        if int(i[1]) in d_l:
+            d_l[int(i[1])] += float(i[0])
+        else:
+            d_l[int(i[1])] = float(i[0])
     for i in r:
-        d_r[int(i[1])] = float(i[0]) * -1
+        if int(i[1]) in d_r:
+            d_r[int(i[1])] += float(i[0]) * -1
+        else:
+            d_r[int(i[1])] = float(i[0]) * -1
 
     for key_l in d_l.keys():
         if key_l not in d_r:
@@ -139,7 +146,7 @@ def reduced(s: dict, av: str):
     res = ''
 
     for k, v in s.items():
-        if v > 0 and k is not min(s.keys()) :
+        if v >= 0 and k is not min(s.keys()) :
             res += ' + '
         if v.is_integer():
             s[k] = int(v)
@@ -198,12 +205,18 @@ def result(k: list, v: list, degree: int):
             c = v[0]
             a = 0
             b = 0
+
+        if c == 0:
+            b = v[1]
+            z = -a / b
+            print(color.b + 'The solution is :\n' + color.n, '{0:.5f}'.format(z), sep='')
+            exit()
+        
         # https://www.maths-et-tiques.fr/telech/20Poly.pdf
         print(color.c + 'Discriminant calculation with discriminant = (b ** 2) - (4 * c * a):' + color.n)
         print('d = (', b, ' ** 2) - (4 * ', c, ' * ', a, ')', sep='')
         discriminant = (b ** 2) - (4 * c * a)
         print('d =', discriminant)
-
 
         if discriminant > 0:
             z1 = (-b - ft_sqrt(discriminant)) / (2 * c) # z1 = -b-√discriminant / 2a

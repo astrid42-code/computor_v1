@@ -28,10 +28,10 @@ if equal(av[1]) == 1:
 
 # sort : dico des elements
 sort = parse(av[1])
+#print("sort=", sort)
 
 l_k = [k for k in sort.keys()]
 l_v = [int(v) if v.is_integer() else round(v, 1) for v in sort.values() ]
-
 
 # reduced fct :
 reduced(sort, av[1])
