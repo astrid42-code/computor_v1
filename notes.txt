@@ -34,16 +34,3 @@ implemented yourself.
 If you work in a compilable language (C/C++ in particular), you will present a
 Makefile that includes the usual set of rules.
 
-
-
-A modifier si possible pour plus de proprete/concision:
-faire une comprehension list pour res / coeff 
-
-a terminer : 
-tester avec des cas vrais et faux + possibilite simple pour l evaluateur de changer les inputs
-
-a faire : 
-mettre les steps dans la resolution mathematiques ( bonus) > done
-revoir le regex de validation ok
-remplacer math.sqrt > ok
-faire une liste d'equations a tester (vraies, fausses, solutions multiples, reellesm, imaginaires, ...) pour evaluateur
